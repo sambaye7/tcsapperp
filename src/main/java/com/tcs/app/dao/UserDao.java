@@ -1,10 +1,12 @@
 package com.tcs.app.dao;
 
+import java.util.List;
+
 import com.tcs.app.model.Persons;
 
 public interface UserDao {
 	
-	public Persons getPersonsByLastName(String lastName);
+	public List<Persons> getPersonsByLastName(String lastName);
 
 	public String addUser(Persons persons);
 

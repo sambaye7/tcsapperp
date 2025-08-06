@@ -13,11 +13,7 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserDao userDao;
 
-	@Override
-	public Persons getPersonByLastName(String lastName) {
-		
-		return userDao.getPersonsByLastName(lastName);
-	}
+	
 
 	@Override
 	public String addUser(Persons persons) {
@@ -44,6 +40,12 @@ public class UserServiceImpl implements UserService{
 		}
 		
 		return message;
+	}
+
+	@Override
+	public Persons getPersonByLastName(String lastName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

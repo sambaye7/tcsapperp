@@ -3,29 +3,29 @@ package com.tcs.app.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class DBConnectUtil {
-	
+public final class DBConnectUtil {
+    private static final Logger LOGGER = Logger.getLogger(DBConnectUtil.class.getName());
 
-	public static String dbUrl = "jdbc:mysql://localhost/devquaddb";
-	public static String userName = "root";
-	public static String password = "devquad";
-	
-	
-	public static Connection getDBConnection() {
-		Connection conn = null;
-		try {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		 conn = DriverManager.getConnection(dbUrl, userName, password);
-		 
-		}catch (SQLException e) {
-			System.out.println("SQLException : " +e);
-		}catch(ClassNotFoundException c) {
-			System.out.println("ClassNotFoundException : "+c);
-		}
-		
-		return conn;
-		
-	}
+    public static final String DB_URL = "jdbc:mysql://localhost/devquaddb";
+    public static final String USERNAME = "root";
+    public static final String PASSWORD = "devquad";
 
+    // Prevent instantiation
+    private DBConnectUtil() {}
+
+    public static Connection getDBConnection() {
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "SQLException: ", e);
+        } catch (ClassNotFoundException c) {
+            LOGGER.log(Level.SEVERE, "ClassNotFoundException: ", c);
+        }
+        return conn;
+    }
 }
